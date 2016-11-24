@@ -1,0 +1,14 @@
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\bin\Debug\CandyBoard.exe.config
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\bin\Debug\CandyBoard.exe
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\bin\Debug\CandyBoard.pdb
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\MainWindow.g.cs
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\App.g.cs
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\CandyBoard_MarkupCompile.cache
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\CandyBoard_MarkupCompile.lref
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\MainWindow.baml
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\CandyBoard.g.resources
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\CandyBoard.Properties.Resources.resources
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\CandyBoard.csproj.GenerateResource.Cache
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\CandyBoard.exe
+C:\Users\User\documents\visual studio 2015\Projects\CandyBoard\CandyBoard\obj\Debug\CandyBoard.pdb
