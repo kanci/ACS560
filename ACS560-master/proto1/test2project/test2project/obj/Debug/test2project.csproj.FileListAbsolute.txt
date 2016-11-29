@@ -32,3 +32,4 @@ C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\proto1\test2pr
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\proto1\test2project\test2project\obj\Debug\test2project.csproj.GenerateResource.Cache
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\proto1\test2project\test2project\obj\Debug\test2project.exe
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\proto1\test2project\test2project\obj\Debug\test2project.pdb
+C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\proto1\test2project\test2project\obj\Debug\test2project.csprojResolveAssemblyReference.cache

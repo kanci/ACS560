@@ -14,13 +14,16 @@ namespace test2project
         [STAThread]
         static void Main()
         {
+
+            string user = "";
+            string pass = "";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new login());
 
 
 
-            //Application.Run(new Form1());
+          //  Application.Run(new Form1(user, pass));
         }
     }
 }
