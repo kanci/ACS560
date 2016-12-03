@@ -14,28 +14,34 @@ using System.Net;
 using Newtonsoft.Json;
 using System.IO;
 
+//this is the 1st version of candy object board
+
 
 namespace test2project {
     public partial class Form1 : Form {
 
+        //constructor takes in string username and password
         public Form1(string loginst, string pass) {
-
             InitializeComponent();
             Player newplayer = new Player(loginst, pass);
-        }//end Form1 constructor taking in username and password
+        }//end Form1 constructor
 
-
+        //Player class
         public class Player {
             string playerlogin;
             string password;
 
+            //player Constructor
             public Player(string asdf, string gfasdg) {
                 this.playerlogin = asdf;
                 this.password = gfasdg;
             }//end Player constructor
+
             public void printplayer() {
                 System.Diagnostics.Debug.Write(playerlogin);
             }
+
+            //getters
             public string getlogin() {
                 return playerlogin;
             }
@@ -45,22 +51,15 @@ namespace test2project {
         }//end Player class
 
         public class board { //board class
-
-            //int[] myboard = new int[32];
-
-
-                
-
+            
             Int64[] myboard = new Int64[64];
            
             public board(Int64[] board) {
-                //int[,] myboard = new int[4,4];
+                //int[,] myboard = new int[8,8];
 
                 for (int i = 0; i < 64; i++) {
                         myboard[i] = board[i];
                 }//init board loop
-                
-
             }//end board constructor
 
             public void printBoard() {
@@ -70,8 +69,6 @@ namespace test2project {
                     if (i % 8 == 7)
                         System.Diagnostics.Debug.WriteLine("");
                 }//init board loop, end for loop
-
-
             }//end printBoard method
             
             public int getvalue(int val) {
@@ -85,7 +82,6 @@ namespace test2project {
 
             //urlstring +=
             
-
             WebClient client = new WebClient();
             Stream stream = client.OpenRead(urlstring);
             StreamReader reader = new StreamReader(stream);
@@ -96,65 +92,57 @@ namespace test2project {
             // instead of WriteLine, 2 or 3 lines of code here using WebClient to download the file
 
 
+            //i wonder if this is an issue??
             System.Diagnostics.Debug.WriteLine(jObject.Root["Board"]);
 
 
-            stream.Close();
-            //Int64[][] tempboard = new Int64[8][];
-
+            //stream.Close();
 
             Int64[] tempboard = new Int64[64];
             
             for (int i=0; i<tempboard.Length; i++) {
-                
-                    //this creates a problem as it invalid operation exception in Newtonsoft.Json.dll
-                    tempboard[i] = (Int64)jObject.Root["Board"][i];
-                
+                //this creates a problem as it invalid operation exception in Newtonsoft.Json.dll
+                tempboard[i] = (Int64)jObject.Root["Board"][i];
             }//end for loop
 
-
             board gameboard = new board(tempboard);
+
             //test printing
             gameboard.printBoard();
 
             Button[] buttons = this.Controls.OfType<Button>().ToArray();
             int tempbutton = 0;
 
-            
-
-            for (int i = 0; i < tempboard.Length; i++) { 
-                    tempbutton = gameboard.getvalue(i);
+            for (int i = 0; i < tempboard.Length; i++) {
+                tempbutton = gameboard.getvalue(i);
 
                 System.Console.WriteLine(tempbutton+" tempbutton " + i + " is the i");
 
+                buttons[i].Text = "" + tempbutton;
 
-                    buttons[i].Text = "" + tempbutton;
-
-                    if (tempbutton == 1) {
-                    
-
+                if (tempbutton == 1) {
                     //it does not work while candies inside test2project, only on C drive
+                    //buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies1.bmp");//button works, only with C directory instead of local C# project directory..
 
+                    //BackgroundImage or Image
 
-                    buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies1.bmp");//there seems to be issue with buttons as it is not working..
+                    // Set the image property.
+                    buttons[i].BackgroundImage = (Bitmap)Image.FromFile(@"C:\Users\User\Desktop\candies\candies1.bmp", true);
 
                 }
-                     else if (tempbutton == 2) {
-                    buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies2.bmp");//there seems to be issue with buttons as it is not working..
+                else if (tempbutton == 2) {
+                    buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies2.bmp");
                 }
-                                else if (tempbutton == 3)
-                                  {
-                    buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies3.bmp");//there seems to be issue with buttons as it is not working..
+                else if (tempbutton == 3) {
+                    buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies3.bmp");
                 }
-                    else if (tempbutton == 4)
-                {
-                    buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies4.bmp");//there seems to be issue with buttons as it is not working..
+                else if (tempbutton == 4) {
+                    buttons[i].BackgroundImage = new Bitmap(@"C:\Users\User\Desktop\candies\candies4.bmp");
                 }            
- 
             }//end for
 
         }//end form 1 load method
-        
+
         //for Login button..
         private void button1_Click(object sender, EventArgs e) {
 

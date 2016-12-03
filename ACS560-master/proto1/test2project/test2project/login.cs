@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//this is the 1st version of candy object board
+
 namespace test2project
 {
     public partial class login : Form

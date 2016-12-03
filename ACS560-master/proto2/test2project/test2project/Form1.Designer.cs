@@ -226,7 +226,7 @@
             this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button15.Location = new System.Drawing.Point(276, 58);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(37, 40);
+            this.button15.Size = new System.Drawing.Size(38, 40);
             this.button15.TabIndex = 14;
             this.button15.UseVisualStyleBackColor = true;
             // 
@@ -595,7 +595,7 @@
             this.button56.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button56.Location = new System.Drawing.Point(319, 288);
             this.button56.Name = "button56";
-            this.button56.Size = new System.Drawing.Size(37, 40);
+            this.button56.Size = new System.Drawing.Size(38, 40);
             this.button56.TabIndex = 55;
             this.button56.UseVisualStyleBackColor = true;
             // 
