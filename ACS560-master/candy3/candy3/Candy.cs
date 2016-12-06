@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace candy3
-{
-    public class Candy
-    {
+namespace candy3 {
+    public class Candy {
         int cValue;
         bool isClicked;
         int location;
-        public Candy(int cValue, bool isClicked, int location)
+        bool clear;
+        public Candy(int cValue, bool isClicked, int location, bool clear)
         {
             this.cValue = cValue;
             this.isClicked = isClicked;
             this.location = location;
+            this.clear = clear;
         }
 
         //adding getters and setters
@@ -57,6 +57,23 @@ namespace candy3
         public int getValue()
         {
             return this.cValue;
+        }
+
+        public bool getClear()
+        {
+            return this.clear;
+        }
+
+
+        //unsure maybe if needed for inside param for setting value..
+        public void setClear()
+        {
+            this.clear = true;
+        }
+
+        public void setUnClear()
+        {
+            this.clear = false;
         }
     } //class candy
 }

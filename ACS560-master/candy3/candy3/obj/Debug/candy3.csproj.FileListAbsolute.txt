@@ -8,6 +8,10 @@ D:\tmp\candy3\candy3\obj\Debug\candy3.csproj.GenerateResource.Cache
 D:\tmp\candy3\candy3\obj\Debug\candy3.exe
 D:\tmp\candy3\candy3\obj\Debug\candy3.pdb
 D:\tmp\candy3\candy3\obj\Debug\candy3.game.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies1.bmp
+C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies2.bmp
+C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies3.bmp
+C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies4.bmp
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candy3.exe.config
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candy3.exe
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candy3.pdb
@@ -19,7 +23,4 @@ C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\obj\Debug\candy3.csproj.GenerateResource.Cache
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\obj\Debug\candy3.exe
 C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\obj\Debug\candy3.pdb
-C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies1.bmp
-C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies2.bmp
-C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies3.bmp
-C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\bin\Debug\candies\candies4.bmp
+C:\Users\User\Documents\Visual Studio 2015\Projects\ACS560-master\candy3\candy3\obj\Debug\candy3.csprojResolveAssemblyReference.cache

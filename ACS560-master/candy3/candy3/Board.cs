@@ -14,9 +14,10 @@ namespace candy3 {
             return clickCount;
         }
 
-        public void setClickCount(int click)
+        //number of count clicks
+        public void setClickCount(int count)
         {
-            Board.clickCount = click;
+            Board.clickCount = count;
         }
 
         public static int candySize;
@@ -43,21 +44,24 @@ namespace candy3 {
             }
         }
 
-        public Candy[] swapCandy(int firstCandy, int secondCandy)
-        {
+        public Candy[] swapCandy(int firstCandy, int secondCandy) {
             Candy tempCandy = newCandies[firstCandy].getCandy();
 
             newCandies[firstCandy] = newCandies[secondCandy].getCandy();
             newCandies[secondCandy] = tempCandy.getCandy();
             return newCandies;
-
         }
 
-        public bool isAdjacent(Candy candy1, Candy candy2)
-        {
-            if (candy1.getLocation() - 1 == candy2.getLocation()) { return true; }
-            if (candy1.getLocation() + 1 == candy2.getLocation()) { return true; }
-            if ((candy1.getLocation() % 8 == candy2.getLocation() % 8) && Math.Abs(candy1.getLocation() - candy2.getLocation()) == 8) { return true; }
+        public bool isAdjacent(Candy candy1, Candy candy2) {
+            if (candy1.getLocation() - 1 == candy2.getLocation()) {
+                return true;
+            }
+            if (candy1.getLocation() + 1 == candy2.getLocation()) {
+                return true;
+            }
+            if ((candy1.getLocation() % 8 == candy2.getLocation() % 8) && Math.Abs(candy1.getLocation() - candy2.getLocation()) == 8) {
+                return true;
+            }
             return false;
         }
 
@@ -73,28 +77,21 @@ namespace candy3 {
                 if (i % 8 == 7)
                     System.Diagnostics.Debug.WriteLine("");
             }//init board loop, end for loop
-
-
         }//end printBoard method
 
-        public Candy[] clearClicks(Candy[] clearBoard)
-        {
-            for (int i = 0; i < candySize; i++)
-            {
+        public Candy[] clearClicks(Candy[] clearBoard) {
+            for (int i = 0; i < candySize; i++) {
                 newCandies[i].getCandy().setNotClicked();
             }
             return clearBoard;
         }
 
-        public Board(Candy[] board)
-        {
+        public Board(Candy[] board) {
             setCandySize(64);
             newCandies = new Candy[getCandySize()];
 
-
-            for (int i = 0; i < candySize; i++)
-            {
-                newCandies[i] = new Candy((int)board[i].getCandy().getValue(), false, i);
+            for (int i = 0; i < candySize; i++) {
+                newCandies[i] = new Candy((int)board[i].getCandy().getValue(), false, i, false);
             }
         }//end board constructor
  

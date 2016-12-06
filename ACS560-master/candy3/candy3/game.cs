@@ -12,12 +12,17 @@ using System.Net;
 using Newtonsoft.Json;
 using System.IO;
 
+//only this solution added images, but has problems logging with username and password, less than 5 characters..
+//but with more than 5 characters for username is fine, but there seems to be error: NullReferenceException unhandled by user code: tempboard[i] = (int)jObject.Root["Board"][i]; in for i loop 64 length of tempboard
+
 namespace candy3 {
     public partial class game : Form {
         public Player newPlayer;
         public Board newBoard;
         public Candy[] newCandies;
         public int firstClick, secondClick;
+
+        public Button[] b;
 
         public game(string loginst, string pass, string indo) {
             //System.Diagnostics.Debug.WriteLine("Create Player");
@@ -29,16 +34,13 @@ namespace candy3 {
             //this.newBoard = new Board(newCandies);
             //System.Diagnostics.Debug.WriteLine("Created Board");
             //Board.printBoard();
-
-            InitializeComponent();
-            System.Diagnostics.Debug.WriteLine("game constructor complete");
         }
 
 
         private void displayButtons(Board newBoard) {
             this.Controls.Clear();
             Point newLoc = new Point(5, 5);
-            Button[] b = new Button[newBoard.getCandySize()];
+            this.b = new Button[newBoard.getCandySize()];
             for (int i = 0; i < newBoard.getCandySize(); i++) {
                 b[i] = new Button();
                 b[i].Size = new Size(50, 50);
@@ -56,63 +58,50 @@ namespace candy3 {
                 b[i].Text = newBoard.getCandy(i).getValue().ToString();
                 b[i].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 
-                if (b[i].Text == "1")
-                {
-                    try
-                    {
+                //check images in file
+                if (b[i].Text == "1") {
+                    try {
                         Bitmap image1 = (Bitmap)Image.FromFile(@"candies\candies1.bmp", true);
                         b[i].BackgroundImage = image1;
-
                     }
-                    catch (System.IO.FileNotFoundException)
-                    {
+                    catch (System.IO.FileNotFoundException) {
                         MessageBox.Show("There was an error opening the bitmap." +
                             "Please check the path.");
                     }
-                    
                 }
-                else if (b[i].Text == "2")
-                {
-                    try
-                    {
+                else if (b[i].Text == "2") {
+                   try {
                         Bitmap image1 = (Bitmap)Image.FromFile(@"candies\candies2.bmp", true);
                         b[i].BackgroundImage = image1;
-
                     }
-                    catch (System.IO.FileNotFoundException)
-                    {
+                    catch (System.IO.FileNotFoundException) {
                         MessageBox.Show("There was an error opening the bitmap." +
                             "Please check the path.");
                     }
-                    
-
                 }
                 else if (b[i].Text == "3") {
-
                     try {
                         Bitmap image1 = (Bitmap)Image.FromFile(@"candies\candies3.bmp", true);
                         b[i].BackgroundImage = image1;
-
                     }
-                    catch (System.IO.FileNotFoundException)
-                    {
+                    catch (System.IO.FileNotFoundException) {
                         MessageBox.Show("There was an error opening the bitmap." +
                             "Please check the path.");
                     }
                 }
                 else if (b[i].Text == "4") {
-                    try
-                    {
+                    try {
                         Bitmap image1 = (Bitmap)Image.FromFile(@"candies\candies4.bmp", true);
                         b[i].BackgroundImage = image1;
-
                     }
-                    catch (System.IO.FileNotFoundException)
-                    {
+                    catch (System.IO.FileNotFoundException) {
                         MessageBox.Show("There was an error opening the bitmap." +
                             "Please check the path.");
                     }
-                }   
+                }
+                if (newBoard.getCandy(i).getClear()) {
+                    b[i].Visible = false;
+                }
             }
             setOnClick(b);
         }
@@ -133,22 +122,127 @@ namespace candy3 {
             Candy[] newCandies = new Candy[64];
             for (int i = 0; i < tempboard.Length; i++) {
                 tempboard[i] = (int)jObject.Root["Board"][i];
-                newCandies[i] = new Candy((int)tempboard[i], false, i);
+                newCandies[i] = new Candy((int)tempboard[i], false, i, false);
             } //end for loop
 
             return newCandies;
         }
 
-        public bool checkJson(Newtonsoft.Json.Linq.JObject jObject) {
-            if (jObject.First.ToString().Substring(1, 5) != "Error".ToString()) {
-                return true;
-            } //end good user/password
-            else {
-                this.Close();
-                MessageBox.Show("Bad user name or password");
-            }
+        public void removeButton(int i) {
+            this.b[i].Visible = false;
+        }
 
-            return false;
+
+        public void checkMatchesHor() {
+
+            int matchingValue = -1;
+
+            System.Console.WriteLine("Matches");
+            matchingValue = -1;
+            int nummatches = 1;
+
+            for (int j = 0; j < 8; j++)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+
+                    int loc = i + (j * 8);
+                    if (i == 0) { nummatches = 0; }
+
+                    if (matchingValue == newBoard.getCandy(loc).getValue()) { nummatches++; }
+                    else
+                    {
+
+                        matchingValue = newBoard.getCandy(loc).getValue();
+                        nummatches = 1;
+                    }
+
+                    System.Console.WriteLine("location: " + newBoard.getCandy(loc).getLocation() + " value: " + newBoard.getCandy(loc).getValue() + " matches: " + nummatches);
+                    if ((nummatches == 3))
+                    {
+                        System.Console.WriteLine("remove matches");
+                        //removeButton(loc);
+                        for (int k = loc; k > loc - 3; k--)
+                        {
+                            newBoard.getCandy(k).setClear();
+                            newPlayer.setScore(newPlayer.getScore() + newBoard.getCandy(k).getValue());
+                        }
+                    }
+                }//i
+                System.Console.WriteLine("end row: " + j);
+            }//j
+
+            System.Console.WriteLine("new score: " + newPlayer.getScore());
+        }
+
+        public void checkMatchesVer()
+        {
+
+            int matchingValue = -1;
+
+            System.Console.WriteLine("Matches");
+            matchingValue = -1;
+            int nummatches = 1;
+
+            for (int j = 0; j < 8; j++)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+
+                    int loc = j + (i * 8);
+                    if (i == 0) { nummatches = 0; }
+
+                    if (matchingValue == newBoard.getCandy(loc).getValue()) { nummatches++; }
+                    else
+                    {
+
+                        matchingValue = newBoard.getCandy(loc).getValue();
+                        nummatches = 1;
+                    }
+
+                    System.Console.WriteLine("location: " + newBoard.getCandy(loc).getLocation() + " value: " + newBoard.getCandy(loc).getValue() + " matches: " + nummatches);
+                    if ((nummatches == 3))
+                    {
+                        System.Console.WriteLine("remove matches");
+                        //removeButton(loc);
+                        for (int k = 0; k < 3; k++)
+                        {
+                            newBoard.getCandy(loc - (k * 8)).setClear();
+                            newPlayer.setScore(newPlayer.getScore() + newBoard.getCandy(loc - (k * 8)).getValue());
+                        }
+                    }
+                }//i
+                System.Console.WriteLine("end col: " + j);
+            }//j
+            System.Console.WriteLine("new score: " + newPlayer.getScore());
+        }
+
+        public bool checkJson(Newtonsoft.Json.Linq.JObject jObject) {
+            string errorString = "";
+
+            //shouldn't have to be !=, because it had errors if less than 6 characters
+            if (jObject.First.ToString().Substring(1, 5) == "Error".ToString()) {
+                //check to see if username and password to verify are correct
+                if (newPlayer.getOperation().ToString() == "login")
+                {
+                    errorString = "bad user name or password";
+                }
+
+                if (newPlayer.getOperation().ToString() == "new")
+                {
+                    errorString = "user: " + newPlayer.getLogin() + " already created";
+                }
+                this.Close();
+                MessageBox.Show(errorString);
+                return false;
+            }
+            else if (jObject.First.ToString().Substring(1, 5) == "Scores".ToString()) {
+                return true;
+            }
+            else
+            {
+                return true;
+            }     
         }
 
         private void game_Load(object sender, EventArgs e) {
@@ -172,27 +266,31 @@ namespace candy3 {
                 System.Console.WriteLine("clicks: " + newBoard.getClickCount() + " secondClick: " + newBoard.getCandy(secondClick).getLocation());
                 newBoard.getCandy(buttonNumber).setClicked();
                 if (newBoard.isAdjacent(newBoard.getCandy(firstClick), newBoard.getCandy(secondClick))) {
-                    System.Console.WriteLine("isAdjacent");
+                    System.Console.WriteLine("isAdjacent but not yet matched");
+          
                     newBoard.swapCandy(newBoard.getCandy(firstClick).getLocation(), newBoard.getCandy(secondClick).getLocation());
                     newBoard.getCandy(firstClick).setLocation(firstClick);
                     newBoard.getCandy(secondClick).setLocation(secondClick);
-                }
+                    
+
+                    checkMatchesHor();
+                    checkMatchesVer();
+                }//end neseted if statement
 
                 newBoard.clearClicks(newCandies);
                 newBoard.setClickCount(0);
-
                 firstClick = -1;
                 secondClick = -1;
                 displayButtons(newBoard);
-            }
-        }
+            }//end else
+        }//end method
 
         private void button1_Click(object sender, EventArgs e) {
-            displayButtons(newBoard);
+         //   displayButtons(newBoard);
         }
 
         private void label1_Click(object sender, EventArgs e) {
-            displayButtons(newBoard);
+         //   displayButtons(newBoard);
         }
 
         private Button[] setOnClick(Button[] button) {
